@@ -456,7 +456,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3545367008702449508, guid: 6094296ac372e274785ab358f6ac9d3e, type: 3}
       propertyPath: m_Name
-      value: Body
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545367008702449508, guid: 6094296ac372e274785ab358f6ac9d3e, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6332031458350417713, guid: 6094296ac372e274785ab358f6ac9d3e, type: 3}
       propertyPath: m_LocalScale.x
