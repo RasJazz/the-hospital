@@ -260,7 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerGo: {fileID: 3545367008702449508}
-  speed: 15
+  speed: 30
+  inventory: {fileID: 11400000, guid: 55c812f953336c74385d486364bc192e, type: 2}
 --- !u!114 &8353334485736201171
 MonoBehaviour:
   m_ObjectHideFlags: 0
