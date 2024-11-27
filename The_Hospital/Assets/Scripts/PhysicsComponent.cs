@@ -16,7 +16,7 @@ public class PhysicsComponent : MonoBehaviour
     // Update is called once per frame
     public void MoveEntity(Vector3 direction, float speed)
     {
-        Vector3 tempVect = direction.normalized * speed * Time.deltaTime;
+        Vector3 tempVect = direction.normalized * speed * Time.fixedDeltaTime;
         _entityRb.MovePosition(_entityTransform.position + tempVect); 
     }
 }
