@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorObject : MonoBehaviour
 {
-    public string keyID;
+    public int keyID;
     private bool islocked = true;
 
     public void UnlockDoor()
@@ -17,9 +17,21 @@ public class DoorObject : MonoBehaviour
 
             //Play sound and animation 
         }
-        else
-        {
-            Debug.Log("The Door is Already Unlocked");
-        }
     }
+
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if(other.CompareTag("Player"))
+    //     {
+    //         InventoryObject inventory = other.GetComponent<InventoryObject>();
+    //         if(inventory != null && inventory.HasKey(keyID))
+    //         {
+    //             UnlockDoor();
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("You don't have the correct key!");
+    //         }
+    //     }
+    // }
 }

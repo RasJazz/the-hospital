@@ -40,4 +40,11 @@ public class InventorySlot
     {
         amount += value;
     }
+
+    // public bool Haskeys(int keyID)
+    // {
+    //     return KeysObject.contains(keyID);
+    // }
+
 }
+

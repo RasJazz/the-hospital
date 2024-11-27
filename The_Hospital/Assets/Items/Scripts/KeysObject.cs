@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 [CreateAssetMenu(fileName = "New Keys Object", menuName = "Inventory System/Item/Keys")]
 public class KeysObject : ItemObject
 {
-    public string keyID;
+    public int keyID;
     public string keyName;
     public bool isCollected = false;
+
 
     public bool UseKey(DoorObject door)
     {
@@ -21,28 +25,5 @@ public class KeysObject : ItemObject
             Debug.Log("The key does not fit this door.");
             return false;
         }
-    }
-
-    // public void Interact()
-    // {
-    //     if(!isCollected)
-    //     {
-    //         CollectedKey();
-    //     }
-    //     else
-    //     {
-    //         Debug.Log($"{keyName} has already been collected");
-    //     }
-    // }
-
-    // public void CollectedKey()
-    // {
-    //     isCollected = true;
-
-    //     Debug.Log($"Collected key: {keyName} (ID: {keyID})");
-
-    //     InventoryObject.Instance.(this);
-
-    //     gameObject.SetActive(false);
-    // }
+    } 
 }
