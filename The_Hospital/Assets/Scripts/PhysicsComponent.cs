@@ -6,14 +6,15 @@ public class PhysicsComponent : MonoBehaviour
 {
     private Transform _entityTransform;
     private Rigidbody _entityRb;
-    // Start is called before the first frame update
+    
+    // Get entity's transform and rb components
     void Start()
     {
         _entityTransform = GetComponent<Transform>();
         _entityRb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    // Normalizes vector for entity and moves rigidbody
     public void MoveEntity(Vector3 direction, float speed)
     {
         Vector3 tempVect = direction.normalized * speed * Time.fixedDeltaTime;

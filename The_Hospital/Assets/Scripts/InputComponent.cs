@@ -8,7 +8,6 @@ public class InputComponent : MonoBehaviour
     private readonly KeyCode[] _keys = { KeyCode.A, KeyCode.W, KeyCode.D, KeyCode.S };
     private int _movementDir;
     
-    // Update is called once per frame
     public Vector3 UpdateInput()
     {
         Vector3 movementDirection = Vector3.zero;
