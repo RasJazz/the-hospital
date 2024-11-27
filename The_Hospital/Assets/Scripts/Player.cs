@@ -17,8 +17,7 @@ public class Player : MonoBehaviour
         _input = GetComponent<InputComponent>();
         _physics = GetComponent<PhysicsComponent>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
          inputDirection = _input.UpdateInput(); // Player input
@@ -27,6 +26,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Moves player based on local space
         Vector3 localInputDirection = transform.TransformDirection(inputDirection);
         _physics.MoveEntity(localInputDirection, speed); // Player Physics
     }
