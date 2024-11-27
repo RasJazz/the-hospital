@@ -5,7 +5,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject _playerGo;
     [SerializeField] private float speed;
-    
+
+    public InventoryObject inventory;
     private InputComponent _input;
     private PhysicsComponent _physics;
     private Vector3 inputDirection;
@@ -27,4 +28,6 @@ public class Player : MonoBehaviour
     {
         _physics.MoveEntity(inputDirection, speed); // Player Physics
     }
+
+    
 }

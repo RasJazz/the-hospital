@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using UnityEngine;
 
 [System.Serializable]
@@ -17,4 +18,14 @@ public class Item
     
     // The quantity of the item
     public int quantity;
-}
+=======
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Item : MonoBehaviour
+{
+    public ItemObject item;
+
+>>>>>>> Stashed changes
+}}
