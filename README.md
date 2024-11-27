@@ -41,7 +41,7 @@ This project was built using Unity 3D and written in C#.
 - Jasmine Rasmussen
 - Allen Zhang
 - Alex Han
-- Yunis
+- Yunis Tamang
 
 ---
 Happy escaping!
