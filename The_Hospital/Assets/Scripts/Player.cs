@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _physics.MoveEntity(inputDirection, speed); // Player Physics
+        Vector3 localInputDirection = transform.TransformDirection(inputDirection);
+        _physics.MoveEntity(localInputDirection, speed); // Player Physics
     }
 }
