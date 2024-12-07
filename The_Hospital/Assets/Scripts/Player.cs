@@ -5,10 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject _playerGo;
+    [SerializeField] private InteractionComponent _interaction;
     [SerializeField] private float speed;
     
     private InputComponent _input;
     private PhysicsComponent _physics;
+    
     private Vector3 inputDirection;
 
 
@@ -34,5 +36,8 @@ public class Player : MonoBehaviour
         Vector3 localInputDirection = transform.TransformDirection(inputDirection);
         _physics.MoveEntity(localInputDirection, speed); // Player Physics
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 }
