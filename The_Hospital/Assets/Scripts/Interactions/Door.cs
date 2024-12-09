@@ -5,8 +5,9 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractible
 {
     [SerializeField] private string prompt;
+    [SerializeField] private Animator theDoor = null;
     
-    private bool _isOpen;
+    private bool _isOpen = false;
     
     public string InteractionPrompt => prompt;
     
@@ -18,7 +19,7 @@ public class Door : MonoBehaviour, IInteractible
             // Consume key
             // getComponent Inventory
             // if inventory == null, return false
-            // if key id == door id
+            theDoor.Play("open door", 0 , 0.0f);
                 Debug.Log("Opening Door");
                 _isOpen = true;
                 // return false;
@@ -26,7 +27,12 @@ public class Door : MonoBehaviour, IInteractible
                 // Debug.Log("No key in inventory");
                 // return false;
             
-        } else { Debug.Log("Door is already open");}
+        } else { 
+            //Debug.Log("Door is already open");
+            theDoor.Play("close door", 0, 0.0f);
+            Debug.Log("Closing Door");
+            _isOpen = false;
+        }
         
         return true;
     }
