@@ -10,7 +10,13 @@ public class ItemTest : MonoBehaviour, IInteractible
     
     public bool Interact(Interactor interactor)
     {
-        Debug.Log("Picking up key");
+        ItemPickup item = GetComponent<ItemPickup>();
+        if (item != null)
+        {
+            item.Pickup();
+            Debug.Log("Picking up key");
+        }
+        Debug.Log(item);
         Destroy(gameObject);
         return true;
     }

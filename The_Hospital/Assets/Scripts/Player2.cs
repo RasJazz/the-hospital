@@ -47,13 +47,13 @@ public class Player2 : MonoBehaviour
         _physics.MoveEntity(localInputDirection, speed); // Player Physics
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        ItemPickup item = other.GetComponent<ItemPickup>();
-        if (item != null)
-        {
-            item.Pickup();
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     ItemPickup item = other.GetComponent<ItemPickup>();
+    //     if (item != null)
+    //     {
+    //         item.Pickup();
+    //     }
+    // }
 
 }
