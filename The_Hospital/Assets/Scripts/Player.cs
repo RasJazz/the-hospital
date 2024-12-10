@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private InteractionComponent _interaction;
     [SerializeField] private float speed;
 
-    public InventoryObject inventory;
+    //public InventoryObject inventory;
     private InputComponent _input;
     private PhysicsComponent _physics;
     
