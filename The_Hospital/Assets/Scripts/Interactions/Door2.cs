@@ -19,7 +19,7 @@ public class Door : MonoBehaviour, IInteractible
     {
         if (!_isOpen)
         {
-            InventoryManager inventory = GetComponent<InventoryManager>();
+            InventoryManager inventory = interactor.GetComponent<InventoryManager>();
             if(inventory == null)
             {
                 Debug.Log("No inventory found");
