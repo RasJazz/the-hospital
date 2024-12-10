@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractible
@@ -7,6 +8,10 @@ public class Door : MonoBehaviour, IInteractible
     [SerializeField] private string prompt;
     
     private bool _isOpen;
+
+    public int doorID;
+
+    public InventoryManager inventoryManager;
     
     public string InteractionPrompt => prompt;
     
@@ -14,10 +19,37 @@ public class Door : MonoBehaviour, IInteractible
     {
         if (!_isOpen)
         {
-            // Play animation
-            // Consume key
+            InventoryManager inventory = GetComponent<InventoryManager>();
+            if(inventory == null)
+            {
+                Debug.Log("No inventory found");
+                return false;
+            }
+
+            foreach (Item item in inventory.Items)
+            {
+                if(item.itemType == ItemType.Key && item.keyId == doorID)
+                {
+                    Debug.Log("Opening Door");
+                    _isOpen = true;
+                    //Consume Key
+                    inventory.Items.Remove(item);
+                    Debug.Log("Key removed from inventory");
+                    // Play animation
+                    return true;
+
+                }
+                else
+                {
+                    Debug.Log("No key in inventory");
+                    return false;
+                }
+            }
+
+            
+
             // getComponent Inventory
-            // if inventory == null, return false
+
             // if key id == door id
                 Debug.Log("Opening Door");
                 _isOpen = true;
