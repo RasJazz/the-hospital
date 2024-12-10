@@ -20,8 +20,8 @@ public class Door : MonoBehaviour, IInteractible
             // getComponent Inventory
             // if inventory == null, return false
             theDoor.Play("open door", 0 , 0.0f);
-                Debug.Log("Opening Door");
-                _isOpen = true;
+            Debug.Log("Opening Door");
+            _isOpen = true;
                 // return false;
             // else, no key found
                 // Debug.Log("No key in inventory");
