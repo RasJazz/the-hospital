@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5957868353207973037}
   - component: {fileID: 3674436035882108725}
   - component: {fileID: 6478477093571950012}
+  - component: {fileID: 5918007527106125410}
   m_Layer: 0
   m_Name: Player with inventory script
   m_TagString: Player
@@ -150,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27cabeaa9a83ea42acb14a25e411048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUD: {fileID: 4437483640040449587, guid: 54e7c1775c3070a4f9496fdf34db318a, type: 3}
+  inventoryManager: {fileID: 949503730578145870, guid: 50f81307949088d44af9362988aa271b, type: 3}
 --- !u!114 &6478477093571950012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +165,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de28fea7da85564baa1a789eb084bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5918007527106125410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865811300047630657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8c278e6c4cbeb4bb03f0f9414e7162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerGo: {fileID: 0}
+  speed: 30
 --- !u!1 &6062330791442989154
 GameObject:
   m_ObjectHideFlags: 0
