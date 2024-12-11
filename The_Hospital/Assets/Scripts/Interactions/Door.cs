@@ -1,25 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractible
 {
     [SerializeField] private string prompt;
+    [SerializeField] private Animator theDoor = null;
     
-    private bool _isOpen;
-
+    private bool _isOpen = false;
     public int doorID;
 
     public InventoryManager inventoryManager;
-    
     public string InteractionPrompt => prompt;
     
     public bool Interact(Interactor interactor)
     {
         if (!_isOpen)
         {
-            InventoryManager inventory = interactor.GetComponent<InventoryManager>();
+             InventoryManager inventory = interactor.GetComponent<InventoryManager>();
             if(inventory == null)
             {
                 Debug.Log("No inventory found");
@@ -30,6 +28,7 @@ public class Door : MonoBehaviour, IInteractible
             {
                 if(item.itemType == ItemType.Key && item.keyId == doorID)
                 {
+                    theDoor.Play("open door", 0 , 0.0f);
                     Debug.Log("Opening Door");
                     _isOpen = true;
                     //Consume Key
@@ -44,21 +43,14 @@ public class Door : MonoBehaviour, IInteractible
                     Debug.Log("No key in inventory");
                     return false;
                 }
+                
             }
-
+            Debug.Log("Opening Door");
+            _isOpen = true;
+            } else { 
             
-
-            // getComponent Inventory
-
-            // if key id == door id
-                Debug.Log("Opening Door");
-                _isOpen = true;
-                // return false;
-            // else, no key found
-                // Debug.Log("No key in inventory");
-                // return false;
-            
-        } else { Debug.Log("Door is already open");}
+            Debug.Log("Door is already open");
+        }
         
         return true;
     }
