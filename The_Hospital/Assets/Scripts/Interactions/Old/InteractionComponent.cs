@@ -11,7 +11,6 @@ public class InteractionComponent : MonoBehaviour
     [SerializeField] private float objectDistance;
     [SerializeField] private float sphereRadius;
 
-
     public void InteractItem()
     {
         RaycastHit hit;
@@ -68,27 +67,17 @@ public class InteractionComponent : MonoBehaviour
         Gizmos.DrawRay(cam.transform.position, cam.transform.forward * objectDistance);
     }
 
-    public void InteractDoor()
-    {   
-        RaycastHit hit;
-        const int doorMask = 1 << 8; 
-        var ray = new Ray(cam.transform.position, cam.transform.forward);
-        if(!Physics.SphereCast(ray, sphereRadius, out hit, objectDistance, doorMask)){
-            Door door = hit.collider.GetComponent<Door>();
-            if(door != null){
-                if (door.Interact(GetComponent<Interactor>()))
-                {
-                Debug.Log("Door interaction successful.");
-                }
-            else
-                {
-                Debug.Log("Door interaction failed.");
-                }
-            }
-        } return;
-         
-    }
+    // public void InteractDoor()
+    // {
+    //     RaycastHit hit;
+    //     const int doorMask = 1 << 8;
+    //     var ray = new Ray(cam.transform.position, cam.transform.forward);
+    //     
+    //     if(!Physics.SphereCast(ray, sphereRadius, out hit, objectDistance, doorMask)) return;
+    //     
+    // }
     
-    
-    
+    // open door
+        // play animation
+        // set isLocked to false;
 }
