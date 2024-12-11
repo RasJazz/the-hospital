@@ -732,11 +732,6 @@ Transform:
   - {fileID: 494804683}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1019466842 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4437483640040449587, guid: 54e7c1775c3070a4f9496fdf34db318a, type: 3}
-  m_PrefabInstance: {fileID: 7979698577346666362}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1048148171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -966,8 +961,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerGo: {fileID: 1537800795}
   speed: 30
-  HUD: {fileID: 1019466842}
-  inventoryManager: {fileID: 1629407327}
 --- !u!4 &1537800803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3447347462581169412, guid: 0c9ddbeac5f49d24cbbe9e785b21a1d2, type: 3}
@@ -1579,6 +1572,6 @@ SceneRoots:
   - {fileID: 1839919072}
   - {fileID: 1537800794}
   - {fileID: 1629407328}
-  - {fileID: 7979698577346666362}
   - {fileID: 1992316055}
+  - {fileID: 7979698577346666362}
   - {fileID: 1048148171}
