@@ -1,82 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class ZombieAI : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public Transform player;
-    public float visionRadius = 10f;
+    private NavMeshAgent agent;
+    private Transform player;
+
+    public float visionRadius = 10000f;
     public float attackRange = 2f;
 
     private Animator animator;
-    private bool isAttacking = false; // Flag to prevent repeated attacks
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         if (!agent)
-            agent = GetComponent<NavMeshAgent>();
+        {
+            Debug.LogError("NavMeshAgent is missing on the zombie!");
+        }
+
+        animator = GetComponent<Animator>();
+        if (!animator)
+        {
+            Debug.LogError("Animator component is missing!");
+        }
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj)
+        {
+            player = playerObj.transform;
+            Debug.Log("Player found and assigned.");
+        }
+        else
+        {
+            Debug.LogError("No GameObject with the 'Player' tag found in the scene!");
+        }
     }
 
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-        // Check if the zombie can see the player
-        if (distanceToPlayer <= visionRadius && !isAttacking)
+        if (!player || !agent)
         {
-            agent.isStopped = false; // Ensure the agent can move
+            Debug.LogError("Player or NavMeshAgent is missing!");
+            return;
+        }
+
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        Debug.Log($"Distance to Player: {distanceToPlayer}");
+
+        if (distanceToPlayer <= visionRadius && distanceToPlayer > attackRange)
+        {
+            agent.isStopped = false;
             agent.SetDestination(player.position);
             animator.SetBool("IsWalking", true);
-
-            // Check if the zombie is close enough to attack
-            if (distanceToPlayer <= attackRange)
-            {
-                StartAttack();
-            }
+            animator.SetBool("IsRunningInPlace", false);
+            Debug.Log("Zombie is moving toward the player.");
+        }
+        else if (distanceToPlayer <= attackRange + 0.1f) // Add margin for error
+        {
+            Debug.Log("Zombie has reached the player!");
+            RestartGame();
         }
         else
         {
-            StopMovement();
-        }
-    }
-
-    void StartAttack()
-    {
-        isAttacking = true; // Prevent further movement or attacking
-        animator.SetBool("IsWalking", false);
-        animator.SetTrigger("Attack");
-        agent.isStopped = true; // Stop the agent while attacking
-
-        // Add a small delay before resetting attack (adjust based on animation length)
-        Invoke(nameof(ResetAttack), 1.5f);
-    }
-
-    void ResetAttack()
-    {
-        isAttacking = false;
-    }
-
-    void StopMovement()
-    {
-        agent.isStopped = true;
-        animator.SetBool("IsWalking", false);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("You Died!");
-            Invoke("RestartGame", 2f); // Delay the restart for dramatic effect
+            agent.isStopped = true;
+            animator.SetBool("IsWalking", false);
+            animator.SetBool("IsRunningInPlace", false);
+            Debug.Log("Zombie is idle.");
         }
     }
 
     void RestartGame()
     {
+        Debug.Log("RestartGame method called.");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Zombie caught the player!");
+            RestartGame();
+        }
     }
 }
