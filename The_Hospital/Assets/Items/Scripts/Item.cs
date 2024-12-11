@@ -9,14 +9,4 @@ public class Item : ScriptableObject
     public string itemName;
     public int value;
     public Sprite icon;
-    public ItemType itemType;
-    public int keyId;
-}
-
-public enum ItemType
-{
-    Generic,
-    Key,
-    Consumable,
-    Equipment
 }
