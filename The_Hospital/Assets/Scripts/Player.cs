@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject _playerGo;
-    [SerializeField] private InteractionComponent _interaction;
     [SerializeField] private float speed;
 
     //public InventoryObject inventory;

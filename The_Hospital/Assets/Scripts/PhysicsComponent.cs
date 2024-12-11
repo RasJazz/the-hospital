@@ -17,7 +17,7 @@ public class PhysicsComponent : MonoBehaviour
     // Normalizes vector for entity and moves rigidbody
     public void MoveEntity(Vector3 direction, float speed)
     {
-        Vector3 tempVect = direction.normalized * speed * Time.fixedDeltaTime;
+        Vector3 tempVect = direction.normalized * (speed * Time.fixedDeltaTime);
         _entityRb.MovePosition(_entityTransform.position + tempVect); 
     }
 }
