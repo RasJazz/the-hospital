@@ -8,6 +8,8 @@ public class ItemTest : MonoBehaviour, IInteractible
     
     public string InteractionPrompt => prompt;
     
+    public Item Item;
+
     public bool Interact(Interactor interactor)
     {
         ItemPickup item = GetComponent<ItemPickup>();
