@@ -154,7 +154,11 @@ MonoBehaviour:
   musicSound:
     name: Ambient_Bg_Music
     clip: {fileID: 8300000, guid: 908c991262f12504f80f86d21c74353d, type: 3}
-  sfxSounds: []
+  sfxSounds:
+  - name: Exit Door
+    clip: {fileID: 8300000, guid: 0921c6f7104eca248b33b7d02708e469, type: 3}
+  - name: Door
+    clip: {fileID: 8300000, guid: 1c657965ef0f7b844b193b88edbe45b9, type: 3}
   musicSource: {fileID: 1503457764}
   sfxSource: {fileID: 1876122819}
 --- !u!4 &18836058

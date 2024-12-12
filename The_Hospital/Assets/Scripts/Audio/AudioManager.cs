@@ -65,4 +65,9 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(s.clip);
         }
     }
+
+    internal void Play(string v)
+    {
+        throw new NotImplementedException();
+    }
 }
