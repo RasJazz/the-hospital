@@ -41,7 +41,8 @@ public class FootstepPlayer : MonoBehaviour
 
     bool IsPlayerMoving()
     {
-        return player.GetInputDirection().sqrMagnitude > 0.01f;
+        return true;
+        //return player.GetInputDirection().sqrMagnitude > 0.01f;
     }
 
     void PlayFootstepSound()
