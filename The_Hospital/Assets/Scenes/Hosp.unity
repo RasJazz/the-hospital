@@ -363,7 +363,7 @@ PrefabInstance:
       addedObject: {fileID: 1621173252}
     - targetCorrespondingSourceObject: {fileID: 1998371697940912222, guid: d58be77cba3adf54cb14b15052b86514, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1621173253}
+      addedObject: {fileID: 1621173256}
   m_SourcePrefab: {fileID: 100100000, guid: d58be77cba3adf54cb14b15052b86514, type: 3}
 --- !u!1001 &38161258
 PrefabInstance:
@@ -5242,9 +5242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6332031458350417713, guid: 6094296ac372e274785ab358f6ac9d3e, type: 3}
       propertyPath: m_LocalPosition.x
-
-      value: -71
-
+      value: 112.1
       objectReference: {fileID: 0}
     - target: {fileID: 6332031458350417713, guid: 6094296ac372e274785ab358f6ac9d3e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5252,8 +5250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6332031458350417713, guid: 6094296ac372e274785ab358f6ac9d3e, type: 3}
       propertyPath: m_LocalPosition.z
-
-      value: 102.2
+      value: -14.7
 
       objectReference: {fileID: 0}
     - target: {fileID: 6332031458350417713, guid: 6094296ac372e274785ab358f6ac9d3e, type: 3}
@@ -16939,8 +16936,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visionRadius: 500
   attackRange: 0.6
---- !u!135 &1621173253
-SphereCollider:
+--- !u!136 &1621173256
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -16954,12 +16951,14 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &1623180206
 PrefabInstance:
   m_ObjectHideFlags: 0
