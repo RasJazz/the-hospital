@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
         _itemPickUp = GetComponent<ItemPickup>();
         _input = GetComponent<InputComponent>();
         _physics = GetComponent<PhysicsComponent>();
