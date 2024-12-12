@@ -36,4 +36,10 @@ public class Player : MonoBehaviour
         Vector3 localInputDirection = transform.TransformDirection(_inputDirection);
         _physics.MoveEntity(localInputDirection, speed); // Player Physics
     }
+
+    // Expose _inputDirection as a public property
+    public Vector3 GetInputDirection()
+    {
+        return _inputDirection;
+    }
 }
