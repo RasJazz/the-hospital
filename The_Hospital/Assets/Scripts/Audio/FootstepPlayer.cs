@@ -7,10 +7,11 @@ public class FootstepPlayer : MonoBehaviour
     private AudioSource audioSource;
     private Player player;
 
-    public AudioClip[] footstepClips; // Array of footstep sounds
-    public float stepInterval = 0.5f; // Time between footsteps
-    [Range(0f, 1f)] public float footstepVolume = 0.5f; // Volume of the footsteps
+    [SerializeField] private AudioClip[] footstepClips; // Array of footstep sounds
+    [SerializeField] private float baseStepInterval = 0.5f; // Base time between footsteps
+    [Range(0f, 1f)] [SerializeField] private float footstepVolume = 0.5f; // Volume of the footsteps
 
+    private float stepInterval;
     private float stepTimer = 0f;
 
     void Start()
@@ -18,8 +19,13 @@ public class FootstepPlayer : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         player = GetComponent<Player>();
 
-        if (!audioSource) Debug.LogError("AudioSource component is missing!");
-        if (!player) Debug.LogError("Player component is missing!");
+        if (!audioSource)
+            Debug.LogError("AudioSource component is missing!");
+
+        if (!player)
+            Debug.LogError("Player component is missing!");
+
+        stepInterval = baseStepInterval; // Initialize with base interval
     }
 
     void Update()
@@ -27,6 +33,7 @@ public class FootstepPlayer : MonoBehaviour
         if (IsPlayerMoving())
         {
             stepTimer += Time.deltaTime;
+
             if (stepTimer >= stepInterval)
             {
                 PlayFootstepSound();
@@ -35,22 +42,34 @@ public class FootstepPlayer : MonoBehaviour
         }
         else
         {
-            stepTimer = 0f;
+            stepTimer = 0f; // Reset the timer when the player stops
         }
     }
 
     bool IsPlayerMoving()
     {
-        return true;
-        //return player.GetInputDirection().sqrMagnitude > 0.01f;
+        // Assuming Player has a method to get input direction
+        if (player == null) return false;
+
+        Vector3 inputDirection = player.GetInputDirection(); // Adjust based on your Player script
+        return inputDirection.sqrMagnitude > 0.01f; // Check if there's significant movement
     }
 
     void PlayFootstepSound()
     {
-        if (footstepClips.Length > 0)
+        if (footstepClips == null || footstepClips.Length == 0)
         {
-            AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
-            audioSource.PlayOneShot(clip, footstepVolume);
+            Debug.LogWarning("No footstep clips assigned!");
+            return;
         }
+
+        // Play a random footstep sound
+        AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
+        audioSource.PlayOneShot(clip, footstepVolume);
+    }
+
+    public void SetStepInterval(float newInterval)
+    {
+        stepInterval = Mathf.Max(0.1f, newInterval); // Ensure interval is not too low
     }
 }
