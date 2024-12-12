@@ -19362,9 +19362,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1017441378401948342, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_Name
+      value: Room 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107342502035812188, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_Name
+      value: Storage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161918989629927061, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_Name
+      value: Office
+      objectReference: {fileID: 0}
     - target: {fileID: 3344291310591292342, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
       propertyPath: m_Name
       value: Keys
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232579699497147505, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_Name
+      value: Bathroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793403574802238206, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_Name
+      value: Room 2
       objectReference: {fileID: 0}
     - target: {fileID: 7127573293505935265, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19405,6 +19425,38 @@ PrefabInstance:
     - target: {fileID: 7127573293505935265, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528274586489973385, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_Name
+      value: Morgue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828683289574560124, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -59.745
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828683289574560124, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.706
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828683289574560124, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -53.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828683289574560124, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70286304
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828683289574560124, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7113252
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828683289574560124, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90.686
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677655247587033901, guid: 98d39177778a6c04cb50b7b747267311, type: 3}
+      propertyPath: m_Name
+      value: Room 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
