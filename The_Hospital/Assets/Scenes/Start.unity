@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 2142724947}
   controlMenu: {fileID: 952922914}
-  resumeMenu: {fileID: 5786503563541462542}
+  pauseMenu: {fileID: 5786503563541462542}
   gameOverMenu: {fileID: 7564148200188343890}
 --- !u!4 &286794781
 Transform:
@@ -925,6 +925,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 286794780}
+    - target: {fileID: 5369521307694274185, guid: c0835bfb65ff2b447b110230e6ced2c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 286794780}
     - target: {fileID: 5839142631741280431, guid: c0835bfb65ff2b447b110230e6ced2c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1036,13 +1040,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1343025419681357333, guid: 2da023442e32d3d43a5703d70c8a66e5, type: 3}
-      propertyPath: m_Name
-      value: Main_Menu
-      objectReference: {fileID: 0}
     - target: {fileID: 1392140233653333127, guid: 2da023442e32d3d43a5703d70c8a66e5, type: 3}
       propertyPath: m_Name
       value: You_Died
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392140233653333127, guid: 2da023442e32d3d43a5703d70c8a66e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2669150106772207118, guid: 2da023442e32d3d43a5703d70c8a66e5, type: 3}
       propertyPath: m_Pivot.x
@@ -1132,18 +1136,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 286794780}
-    - target: {fileID: 4962173607858097147, guid: 2da023442e32d3d43a5703d70c8a66e5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnRestartButton
-      objectReference: {fileID: 0}
     - target: {fileID: 5181309573398975138, guid: 2da023442e32d3d43a5703d70c8a66e5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 286794780}
-    - target: {fileID: 5181309573398975138, guid: 2da023442e32d3d43a5703d70c8a66e5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnMainMenuButton
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1168,10 +1164,6 @@ PrefabInstance:
     - target: {fileID: 5786503564582935902, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
       propertyPath: m_Name
       value: Main
-      objectReference: {fileID: 0}
-    - target: {fileID: 5786503564582935902, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6075307637455962007, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
