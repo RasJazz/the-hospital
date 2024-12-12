@@ -1,29 +1,48 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
-    // Scene names are saved as enum values to be used for scene switching
+    [SerializeField] private GameObject mainMenu; // main menu UI
+    [SerializeField] private GameObject controlMenu;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject gameOverMenu;
+
     private enum Scenes
     {
         Start,
-        Level1
+        Hosp
     }
 
-    /// <summary>
-    /// Starts the game and loads next level
-    /// </summary>
-    public static void OnPlayButton()
+    public void OnStartButton()
     {
-        SceneManager.LoadScene((int)Scenes.Level1);
+        SceneManager.LoadScene((int)Scenes.Hosp);
     }
-
-    /// <summary>
-    /// Exits the game
-    /// </summary>
+    
     public static void OnExitButton()
     {
         Application.Quit();
+    }
+
+    // Move to separate script
+    public void OnResumeButton()
+    {
+        Debug.Log("Resuming Game");
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f; // Resume the game
+    }
+
+    // Move to separate script
+    public void OnRestartButton()
+    {
+        Debug.Log("Restart");
+        SceneManager.LoadScene((int)Scenes.Hosp);
+    }
+
+    // Move to separate script
+    public void OnMainMenuButton()
+    {
+        SceneManager.LoadScene((int)Scenes.Start);
     }
 }
