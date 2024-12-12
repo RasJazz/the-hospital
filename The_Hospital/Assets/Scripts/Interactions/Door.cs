@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Item;
 
 public class Door : MonoBehaviour, IInteractible
 {
@@ -36,17 +37,20 @@ public class Door : MonoBehaviour, IInteractible
             return _isOpen;
         }
 
-        foreach (var item in inventory.Items.Where(item => item.itemName == "key" && item.id == doorId))
+        foreach (var item in inventory.Items.Where(item => item.itemType == ItemType.Key && item.id == doorId))
         {
             doorAnim.Play("open door");
             Debug.Log("Opening Door");
                
             //Consume Key
             inventory.Items.Remove(item);
+            // Destroy(gameObject);
             Debug.Log("Key removed from inventory");
             // Play animation
             _isOpen = true;
+            return _isOpen;
         } 
+        Debug.Log("No key in inventory");
         
         return _isOpen;
     }
