@@ -1,55 +1,36 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu; // main menu UI
-    [SerializeField] private GameObject controlMenu; 
-    // Scene names are saved as enum values to be used for scene switching
-    private enum Scenes
+    // Singleton instance
+    public static SceneLoader Instance { get; private set; }
+
+    private void Awake()
     {
-        Start,
-        Level1
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Persist across scenes
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    /// <summary>
-    /// Starts the game and loads next level
-    /// </summary>
-    public void OnStartButton()
+    public void LoadScene(string sceneName)
     {
-        Debug.Log("Start");
-        // SceneManager.LoadScene((int)Scenes.Level1);
-    }
-    
-    /// <summary>
-    /// Shows Controls
-    /// </summary>
-    public void OnControlButton()
-    {
-        // Disable main menu
-        mainMenu.SetActive(false);
-        // Enable next canvas
-        controlMenu.SetActive(true);
-        // Testing
-        Debug.Log("Pressed Control\nQuitting");
-        // Application.Quit();
-    }
-    
-    public void OnBackButton()
-    {
-        // Disable main menu
-        controlMenu.SetActive(false);
-        // Enable next canvas
-        mainMenu.SetActive(true);
+        Debug.Log($"Loading Scene: {sceneName}");
+        SceneManager.LoadScene(sceneName);
     }
 
-    /// <summary>
-    /// Exits the game
-    /// </summary>
-    public static void OnExitButton()
+    public void ExitGame()
     {
-        Debug.Log("Pressed Exit\nQuitting");
-        // Application.Quit();
+        Debug.Log("Exiting Game");
+        Application.Quit();
     }
 }
+
+

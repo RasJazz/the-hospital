@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSound:
-    name: 
-    clip: {fileID: 0}
+    name: Ambient_Bg_Music
+    clip: {fileID: 8300000, guid: 908c991262f12504f80f86d21c74353d, type: 3}
   sfxSounds: []
   musicSource: {fileID: 1503457764}
   sfxSource: {fileID: 1876122819}
@@ -167,7 +167,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.80112, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1503457765}
@@ -250,6 +250,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1369035733697240823, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.1403885
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369035733697240823, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.9439998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369035733697240823, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 171.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5250562804857677206, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -265,7 +277,23 @@ PrefabInstance:
     - target: {fileID: 6075307637455962007, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 286794780}
+      objectReference: {fileID: 2142724947}
+    - target: {fileID: 6898763604901220437, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.1403885
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898763604901220437, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.9439998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898763604901220437, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 171.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898763604901220437, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -128.9
+      objectReference: {fileID: 0}
     - target: {fileID: 8797205827901009031, guid: a73b88331d8d8d14d94c9155ce703b8b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -380,8 +408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb214db31724edd4a802f1f2755c4862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 2142724947}
-  controlMenu: {fileID: 952922914}
 --- !u!4 &286794781
 Transform:
   m_ObjectHideFlags: 0
@@ -679,7 +705,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -919,10 +945,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 233438861462730294, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100.399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 233438861462730294, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -193.79999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155656909089348255, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2155656909089348255, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 286794780}
+    - target: {fileID: 2155656909089348255, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155656909089348255, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Hosp
+      objectReference: {fileID: 0}
     - target: {fileID: 3279900056975254091, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -931,10 +977,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main
       objectReference: {fileID: 0}
+    - target: {fileID: 5786503564582935902, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6075307637455962007, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 286794780}
+      objectReference: {fileID: 952922914}
+    - target: {fileID: 6898039322128448372, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -71
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898763604901220437, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100.399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898763604901220437, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -132.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8797205827901009031, guid: be0fce4937d6d03488d8e05da3e14645, type: 3}
       propertyPath: m_Pivot.x
       value: 0
