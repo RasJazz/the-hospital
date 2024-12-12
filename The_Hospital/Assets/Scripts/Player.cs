@@ -10,11 +10,14 @@ public class Player : MonoBehaviour
     private InputComponent _input;
     private PhysicsComponent _physics;
     
+    private ItemPickup _itemPickUP;
+
     private Vector3 inputDirection;
     private ItemPickup _itemPickUP;
 
     private void Start()
     {
+        _itemPickUP = GetComponent<ItemPickup>();
         _input = GetComponent<InputComponent>();
         _physics = GetComponent<PhysicsComponent>();
         _itemPickUP = GetComponent<ItemPickup>();
