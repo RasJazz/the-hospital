@@ -39,12 +39,14 @@ public class Door : MonoBehaviour, IInteractible
 
         foreach (var item in inventory.Items.Where(item => item.itemType == ItemType.Key && item.id == doorId))
         {
-            doorAnim.Play("open door");
+            //doorAnim.Play("open door");
             Debug.Log("Opening Door");
+            AudioManager.Instance.PlaySfx("Door");
                
             //Consume Key
-            inventory.Items.Remove(item);
-            // Destroy(gameObject);
+            //inventory.Items.Remove(item);
+
+            Destroy(gameObject);
             Debug.Log("Key removed from inventory");
             // Play animation
             _isOpen = true;
