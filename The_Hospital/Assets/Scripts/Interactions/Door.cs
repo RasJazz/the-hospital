@@ -9,13 +9,15 @@ public class Door : MonoBehaviour, IInteractible
     [SerializeField] private InventoryManager inventory;
     public string InteractionPrompt => prompt;
 
-    private Animation doorAnim;
+    private Animator doorAnim;
     private bool _isOpen;
     public int doorId;
 
     private void Start(){
-        doorAnim = GetComponent<Animation>();
+        doorAnim = GetComponent<Animator>();
     }
+
+    
 
     public bool Interact(Interactor interactor)
     {
@@ -36,18 +38,20 @@ public class Door : MonoBehaviour, IInteractible
             return _isOpen;
         }
 
+
         foreach (var item in inventory.Items.Where(item => item.itemName == "key" && item.id == doorId))
         {
-            doorAnim.Play("open door");
+            doorAnim.enabled = true;
+            doorAnim.SetTrigger("OpenDoor");
             Debug.Log("Opening Door");
                
             //Consume Key
-            inventory.Items.Remove(item);
+            inventory.Remove(item);
             Debug.Log("Key removed from inventory");
             // Play animation
             _isOpen = true;
         } 
-        
+        Debug.Log("no key");
         return _isOpen;
     }
 }
