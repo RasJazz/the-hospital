@@ -312,9 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerGo: {fileID: 4544430594349939384}
-  _interaction: {fileID: 0}
   speed: 30
-  inventory: {fileID: 11400000, guid: 55c812f953336c74385d486364bc192e, type: 2}
 --- !u!114 &5824154360194795424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27cabeaa9a83ea42acb14a25e411048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUD: {fileID: 0}
+  inventoryManager: {fileID: 0}
 --- !u!114 &7548778490896518857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,7 +566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6095465841084074091
 RectTransform:
   m_ObjectHideFlags: 0

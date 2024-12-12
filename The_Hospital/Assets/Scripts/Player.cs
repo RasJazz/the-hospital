@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
 
     //public InventoryObject inventory;
+    public ItemPickup _itemPickup;
     private InputComponent _input;
     private PhysicsComponent _physics;
     
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        _itemPickup = GetComponent<ItemPickup>();
         _input = GetComponent<InputComponent>();
         _physics = GetComponent<PhysicsComponent>();
     }
