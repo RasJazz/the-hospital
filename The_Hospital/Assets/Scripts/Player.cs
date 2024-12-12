@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject playerGo;
     [SerializeField] private float speed;
 
-
     private InputComponent _input;
     private PhysicsComponent _physics;
     
