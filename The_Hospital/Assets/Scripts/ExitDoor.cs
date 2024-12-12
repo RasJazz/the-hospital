@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static Item;
 
-public class Door : MonoBehaviour, IInteractible
+public class ExitDoor : MonoBehaviour, IInteractible
 {
     [SerializeField] private string prompt;
     [SerializeField] private InventoryManager inventory;
@@ -41,7 +41,7 @@ public class Door : MonoBehaviour, IInteractible
         {
             //doorAnim.Play("open door");
             Debug.Log("Opening Door");
-            AudioManager.Instance.PlaySfx("Door");
+            AudioManager.Instance.PlaySfx("Exit Door");
                
             //Consume Key
             //inventory.Items.Remove(item);
