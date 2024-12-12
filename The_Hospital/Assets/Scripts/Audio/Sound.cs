@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
-public class Sound : MonoBehaviour
+[Serializable]
+public class Sound
 {
     public string name;
     public AudioClip clip;
