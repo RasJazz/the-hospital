@@ -151,9 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b40e3d2f580104b8c4001fac79d517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSound:
-    name: Background Music
-    clip: {fileID: 8300000, guid: fe998676dac804477a919a1c57dc09d3, type: 3}
+  musicSound: {fileID: 0}
   sfxSounds: []
   musicSource: {fileID: 1503457764}
   sfxSource: {fileID: 1876122819}
@@ -519,7 +517,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
