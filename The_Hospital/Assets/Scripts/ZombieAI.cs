@@ -55,6 +55,7 @@ public class ZombieAI : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+
         if (distanceToPlayer <= visionRadius && distanceToPlayer > attackRange)
         {
             agent.isStopped = false;
