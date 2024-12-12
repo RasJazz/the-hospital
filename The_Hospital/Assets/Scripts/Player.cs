@@ -7,16 +7,17 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _playerGo;
     [SerializeField] private float speed;
 
-    //public InventoryObject inventory;
     private InputComponent _input;
     private PhysicsComponent _physics;
     
     private Vector3 inputDirection;
+    private ItemPickup _itemPickUP;
 
     private void Start()
     {
         _input = GetComponent<InputComponent>();
         _physics = GetComponent<PhysicsComponent>();
+        _itemPickUP = GetComponent<ItemPickup>();
     }
     
     void Update()

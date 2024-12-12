@@ -7,7 +7,7 @@ public class ItemTest : MonoBehaviour, IInteractible
     [SerializeField] private string prompt;
     
     public string InteractionPrompt => prompt;
-    
+    public Item item;
     public bool Interact(Interactor interactor)
     {
         ItemPickup item = GetComponent<ItemPickup>();
