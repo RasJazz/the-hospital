@@ -44,6 +44,7 @@ public class Door : MonoBehaviour, IInteractible
                
             //Consume Key
             //inventory.Items.Remove(item);
+
             Destroy(gameObject);
             Debug.Log("Key removed from inventory");
             // Play animation
