@@ -4,45 +4,33 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu; // main menu UI
-    [SerializeField] private GameObject controlMenu;
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject gameOverMenu;
+    // Singleton instance
+    public static SceneLoader Instance { get; private set; }
 
-    private enum Scenes
+    private void Awake()
     {
-        Start,
-        Hosp
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Persist across scenes
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public void OnStartButton()
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene((int)Scenes.Hosp);
+        Debug.Log($"Loading Scene: {sceneName}");
+        SceneManager.LoadScene(sceneName);
     }
-    
-    public static void OnExitButton()
+
+    public void ExitGame()
     {
+        Debug.Log("Exiting Game");
         Application.Quit();
     }
-
-    // Move to separate script
-    public void OnResumeButton()
-    {
-        Debug.Log("Resuming Game");
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f; // Resume the game
-    }
-
-    // Move to separate script
-    public void OnRestartButton()
-    {
-        Debug.Log("Restart");
-        SceneManager.LoadScene((int)Scenes.Hosp);
-    }
-
-    // Move to separate script
-    public void OnMainMenuButton()
-    {
-        SceneManager.LoadScene((int)Scenes.Start);
-    }
 }
+
+
