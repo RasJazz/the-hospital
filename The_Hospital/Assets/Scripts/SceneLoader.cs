@@ -4,11 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    // Singleton instance
-    public static SceneLoader Instance { get; private set; }
-
-    [Header("UI Menus")]
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject mainMenu; // main menu UI
     [SerializeField] private GameObject controlMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverMenu;
@@ -19,77 +15,34 @@ public class SceneLoader : MonoBehaviour
         Hosp
     }
 
-    private void Awake()
-    {
-        // Ensure only one instance exists
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep this object across scenes
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public void OnStartButton()
     {
-        LoadScene(Scenes.Hosp);
+        SceneManager.LoadScene((int)Scenes.Hosp);
     }
-
-    public void OnControlButton()
+    
+    public static void OnExitButton()
     {
-        ToggleMenu(mainMenu, false);
-        ToggleMenu(pauseMenu, false);
-        ToggleMenu(controlMenu, true);
-    }
-
-    public void OnBackButton()
-    {
-        ToggleMenu(controlMenu, false);
-
-        ToggleMenu(SceneManager.GetActiveScene().name == Scenes.Start.ToString() ? 
-            mainMenu : pauseMenu, true);
-    }
-
-    public void OnResumeButton()
-    {
-        Debug.Log("Resuming Game");
-        ToggleMenu(pauseMenu, false);
-        Time.timeScale = 1f; // Resume game time
-    }
-
-    public void OnRestartButton()
-    {
-        LoadScene(Scenes.Hosp);
-    }
-
-    public void OnMainMenuButton()
-    {
-        ToggleMenu(gameOverMenu, false);
-        LoadScene(Scenes.Start);
-        ToggleMenu(mainMenu, true);
-    }
-
-    public void OnExitButton()
-    {
-        Debug.Log("Exiting Game");
         Application.Quit();
     }
 
-    private void LoadScene(Scenes scene)
+    // Move to separate script
+    public void OnResumeButton()
     {
-        Debug.Log($"Loading Scene: {scene}");
-        SceneManager.LoadScene((int)scene);
-        Time.timeScale = 1f; // Ensure game time is normal
+        Debug.Log("Resuming Game");
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f; // Resume the game
     }
 
-    private void ToggleMenu(GameObject menu, bool isActive)
+    // Move to separate script
+    public void OnRestartButton()
     {
-        if (menu != null)
-        {
-            menu.SetActive(isActive);
-        }
+        Debug.Log("Restart");
+        SceneManager.LoadScene((int)Scenes.Hosp);
+    }
+
+    // Move to separate script
+    public void OnMainMenuButton()
+    {
+        SceneManager.LoadScene((int)Scenes.Start);
     }
 }
