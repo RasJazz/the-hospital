@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _playerGo;
     [SerializeField] private float speed;
 
-    //public InventoryObject inventory;
     private InputComponent _input;
     private PhysicsComponent _physics;
     
@@ -21,8 +20,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-         inputDirection = _input.UpdateInput(); // Player input
-        // Pass in movement direction to Sprite
+        inputDirection = _input.UpdateInput(); // Player input
     }
 
     private void FixedUpdate()
@@ -30,5 +28,11 @@ public class Player : MonoBehaviour
         // Moves player based on local space
         Vector3 localInputDirection = transform.TransformDirection(inputDirection);
         _physics.MoveEntity(localInputDirection, speed); // Player Physics
+    }
+
+    // Expose the input direction to other scripts
+    public Vector3 GetInputDirection()
+    {
+        return inputDirection;
     }
 }

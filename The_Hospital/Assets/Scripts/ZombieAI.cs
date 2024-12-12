@@ -8,30 +8,36 @@ public class ZombieAI : MonoBehaviour
     private Transform player;
     private AudioSource audioSource;
 
-    public float visionRadius = 10000f;
-    public float attackRange = 2f;
+    public AudioClip alertSoundClip; // Sound to play when the zombie first sees the player
+    public AudioClip chaseSoundClip; // Sound to play while chasing
+    public Transform[] patrolPoints; // Waypoints for patrol
+    public Transform doorPatrolPoint; // Patrol point near the door
+    public DoorController doorController; // Reference to the door's state
+    public float visionRadius = 20f; // Range within which the zombie can see the player
+    public float attackRange = 2f; // Range within which the zombie attacks the player
+    public float idleTime = 2f; // Time to wait at each patrol point
+    public float alertSoundCooldown = 5f; // Delay before the alert sound can replay
+
+    [Range(0f, 1f)] public float alertVolume = 0.5f; // Volume for the alert sound
+    [Range(0f, 1f)] public float chaseVolume = 0.3f; // Volume for the chase sound
 
     private Animator animator;
+    private bool hasSeenPlayer = false;
+    private int currentPatrolIndex = 0;
+    private bool isWaiting = false;
+    private float waitTimer = 0f;
+    private float lastAlertSoundTime = -Mathf.Infinity; // Tracks when the alert sound was last played
 
     void Start()
     {
+        // Initialize components
         agent = GetComponent<NavMeshAgent>();
-        if (!agent)
-        {
-            Debug.LogError("NavMeshAgent is missing on the zombie!");
-        }
-
         animator = GetComponent<Animator>();
-        if (!animator)
-        {
-            Debug.LogError("Animator component is missing!");
-        }
-
         audioSource = GetComponent<AudioSource>();
-        if (!audioSource)
-        {
-            Debug.LogError("AudioSource component is missing!");
-        }
+
+        if (!agent) Debug.LogError("NavMeshAgent is missing on the zombie!");
+        if (!animator) Debug.LogError("Animator component is missing!");
+        if (!audioSource) Debug.LogError("AudioSource component is missing!");
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj)
@@ -42,6 +48,15 @@ public class ZombieAI : MonoBehaviour
         else
         {
             Debug.LogError("No GameObject with the 'Player' tag found in the scene!");
+        }
+
+        if (patrolPoints.Length > 0)
+        {
+            GoToNextPatrolPoint();
+        }
+        else
+        {
+            Debug.LogError("No patrol points assigned!");
         }
     }
 
@@ -54,48 +69,117 @@ public class ZombieAI : MonoBehaviour
         }
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        Debug.Log($"Distance to Player: {distanceToPlayer}");
 
-        if (distanceToPlayer <= visionRadius && distanceToPlayer > attackRange)
+        if (distanceToPlayer <= visionRadius)
         {
-            agent.isStopped = false;
-            agent.SetDestination(player.position);
-            animator.SetBool("IsWalking", true);
-            animator.SetBool("IsRunningInPlace", false);
-
-            if (!audioSource.isPlaying)
+            // Play alert sound if zombie just saw the player and the cooldown has passed
+            if (!hasSeenPlayer && Time.time > lastAlertSoundTime + alertSoundCooldown)
             {
-                audioSource.loop = true; // Ensure looping is enabled
-                audioSource.Play();
-                Debug.Log("Zombie sound is playing.");
+                PlayAlertSound();
+                hasSeenPlayer = true;
             }
 
-            Debug.Log("Zombie is moving toward the player.");
-        }
-        else if (distanceToPlayer <= attackRange + 0.1f) // Add margin for error
-        {
-            Debug.Log("Zombie has reached the player!");
-            RestartGame();
+            // Chase the player
+            ChasePlayer(distanceToPlayer);
         }
         else
         {
-            agent.isStopped = true;
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsRunningInPlace", false);
+            // Reset hasSeenPlayer if the player is no longer visible
+            hasSeenPlayer = false;
 
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-                Debug.Log("Zombie sound stopped.");
-            }
-
-            Debug.Log("Zombie is idle.");
+            // Patrol when the player is not visible
+            Patrol();
         }
+    }
+
+    void PlayAlertSound()
+    {
+        if (audioSource && alertSoundClip)
+        {
+            audioSource.volume = alertVolume; // Set the volume for the alert sound
+            audioSource.PlayOneShot(alertSoundClip); // Play the alert sound once
+            lastAlertSoundTime = Time.time; // Update the time the sound was played
+            Debug.Log("Alert sound played!");
+        }
+    }
+
+    void ChasePlayer(float distanceToPlayer)
+    {
+        if (distanceToPlayer > attackRange)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(player.position); // Move toward the player
+            animator.SetBool("IsWalking", true);
+
+            // Play chase sound if not already playing
+            if (audioSource.clip != chaseSoundClip || !audioSource.isPlaying)
+            {
+                audioSource.clip = chaseSoundClip;
+                audioSource.volume = chaseVolume; // Set the volume for the chase sound
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+        }
+        else if (distanceToPlayer <= attackRange)
+        {
+            RestartGame();
+        }
+    }
+
+    void Patrol()
+    {
+        if (agent.remainingDistance < 0.5f && !isWaiting)
+        {
+            isWaiting = true;
+            waitTimer = idleTime;
+            animator.SetBool("IsWalking", false);
+            audioSource.Stop(); // Stop all sounds while patrolling
+        }
+
+        if (isWaiting)
+        {
+            waitTimer -= Time.deltaTime;
+            if (waitTimer <= 0f)
+            {
+                isWaiting = false;
+                GoToNextPatrolPoint();
+            }
+        }
+
+        if (!agent.pathPending && !isWaiting)
+        {
+            animator.SetBool("IsWalking", true);
+        }
+    }
+
+    void GoToNextPatrolPoint()
+    {
+        if (patrolPoints.Length == 0)
+            return;
+
+        Transform nextPatrolPoint = patrolPoints[currentPatrolIndex];
+
+        // Check if the patrol point is near a door and if the door is open
+        if (nextPatrolPoint == doorPatrolPoint && doorController != null)
+        {
+            if (!doorController.isOpen)
+            {
+                Debug.Log("Door is closed. Waiting for it to open...");
+                return; // Wait for the door to open
+            }
+        }
+
+        // Set the destination to the next patrol point
+        agent.destination = nextPatrolPoint.position;
+        animator.SetBool("IsWalking", true);
+
+        // Update patrol index for the next point
+        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
     }
 
     void RestartGame()
     {
-        Debug.Log("RestartGame method called.");
+        Debug.Log("Restarting Game...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -103,7 +187,6 @@ public class ZombieAI : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Zombie caught the player!");
             RestartGame();
         }
     }
