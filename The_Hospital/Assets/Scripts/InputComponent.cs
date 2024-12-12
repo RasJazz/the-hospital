@@ -32,4 +32,13 @@ public class InputComponent : MonoBehaviour
 
         return movementDirection.normalized;
     }
+
+    public void PauseGame(GameObject pauseScreen, CameraFollow cam)
+    {
+        if (!Input.GetKey(KeyCode.Escape)) return;
+        
+        if (!pauseScreen.activeSelf) pauseScreen.SetActive(true);
+        Time.timeScale = 0f; // Pause the game
+        cam.PauseCamera(); // Pause camera
+    }
 }
