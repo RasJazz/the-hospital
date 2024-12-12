@@ -54,7 +54,8 @@ public class ZombieAI : MonoBehaviour
         }
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-       //Debug.Log($"Distance to Player: {distanceToPlayer}");
+
+        // Debug.Log($"Distance to Player: {distanceToPlayer}");
 
         if (distanceToPlayer <= visionRadius && distanceToPlayer > attackRange)
         {
