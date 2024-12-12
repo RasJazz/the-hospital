@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Item;
 
 public class Door : MonoBehaviour, IInteractible
 {
@@ -9,15 +10,13 @@ public class Door : MonoBehaviour, IInteractible
     [SerializeField] private InventoryManager inventory;
     public string InteractionPrompt => prompt;
 
-    private Animator doorAnim;
+    private Animation doorAnim;
     private bool _isOpen;
     public int doorId;
 
     private void Start(){
-        doorAnim = GetComponent<Animator>();
+        doorAnim = GetComponent<Animation>();
     }
-
-    
 
     public bool Interact(Interactor interactor)
     {
@@ -38,20 +37,21 @@ public class Door : MonoBehaviour, IInteractible
             return _isOpen;
         }
 
-
-        foreach (var item in inventory.Items.Where(item => item.itemName == "key" && item.id == doorId))
+        foreach (var item in inventory.Items.Where(item => item.itemType == ItemType.Key && item.id == doorId))
         {
-            doorAnim.enabled = true;
-            doorAnim.SetTrigger("OpenDoor");
+            doorAnim.Play("open door");
             Debug.Log("Opening Door");
                
             //Consume Key
-            inventory.Remove(item);
+            inventory.Items.Remove(item);
+            // Destroy(gameObject);
             Debug.Log("Key removed from inventory");
             // Play animation
             _isOpen = true;
+            return _isOpen;
         } 
-        Debug.Log("no key");
+        Debug.Log("No key in inventory");
+        
         return _isOpen;
     }
 }
