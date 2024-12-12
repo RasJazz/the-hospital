@@ -6,6 +6,7 @@ public class ZombieAI : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Transform player;
+    private AudioSource audioSource;
 
     public float visionRadius = 10000f;
     public float attackRange = 2f;
@@ -24,6 +25,12 @@ public class ZombieAI : MonoBehaviour
         if (!animator)
         {
             Debug.LogError("Animator component is missing!");
+        }
+
+        audioSource = GetComponent<AudioSource>();
+        if (!audioSource)
+        {
+            Debug.LogError("AudioSource component is missing!");
         }
 
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -55,6 +62,14 @@ public class ZombieAI : MonoBehaviour
             agent.SetDestination(player.position);
             animator.SetBool("IsWalking", true);
             animator.SetBool("IsRunningInPlace", false);
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.loop = true; // Ensure looping is enabled
+                audioSource.Play();
+                Debug.Log("Zombie sound is playing.");
+            }
+
             Debug.Log("Zombie is moving toward the player.");
         }
         else if (distanceToPlayer <= attackRange + 0.1f) // Add margin for error
@@ -67,6 +82,13 @@ public class ZombieAI : MonoBehaviour
             agent.isStopped = true;
             animator.SetBool("IsWalking", false);
             animator.SetBool("IsRunningInPlace", false);
+
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+                Debug.Log("Zombie sound stopped.");
+            }
+
             Debug.Log("Zombie is idle.");
         }
     }
