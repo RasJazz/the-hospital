@@ -22,6 +22,9 @@ public class ZombieAI : MonoBehaviour
     private bool isWaiting = false;
     private float waitTimer = 0f;
 
+    private float soundTimer = 0f; // Timer to track sound cooldown
+    private float soundCooldown = 5f; // Cooldown time between sound plays
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -71,6 +74,8 @@ public class ZombieAI : MonoBehaviour
             return;
         }
 
+        soundTimer += Time.deltaTime; // Increment sound timer
+
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if (distanceToPlayer <= visionRadius)
@@ -95,10 +100,12 @@ public class ZombieAI : MonoBehaviour
             agent.SetDestination(player.position);
             animator.SetBool("IsWalking", true);
 
-            if (!audioSource.isPlaying)
+            // Play sound only if the cooldown has elapsed
+            if (soundTimer >= soundCooldown)
             {
-                audioSource.loop = true;
+                audioSource.loop = false;
                 audioSource.Play();
+                soundTimer = 0f; // Reset the timer
             }
         }
         else if (distanceToPlayer <= attackRange)
@@ -129,10 +136,13 @@ public class ZombieAI : MonoBehaviour
         if (!agent.pathPending && !isWaiting)
         {
             animator.SetBool("IsWalking", true);
-            if (!audioSource.isPlaying)
+
+            // Play sound only if the cooldown has elapsed
+            if (!audioSource.isPlaying && soundTimer >= soundCooldown)
             {
-                audioSource.loop = true;
+                audioSource.loop = false;
                 audioSource.Play();
+                soundTimer = 0f; // Reset the timer
             }
         }
         else if (isWaiting && audioSource.isPlaying)
