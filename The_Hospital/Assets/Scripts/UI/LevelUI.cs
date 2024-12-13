@@ -28,4 +28,11 @@ public class LevelUI : MonoBehaviour
     {
         SceneLoader.Instance.ExitGame();
     }
+
+    public void OnCloseNote()
+    {
+        playerCam.UnpauseCamera();
+        Time.timeScale = 1f; // Resume the game
+        //gameObject.transform.parent.gameObject.SetActive(false);
+    }
 }
