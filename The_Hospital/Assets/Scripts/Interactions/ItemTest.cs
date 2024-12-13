@@ -15,6 +15,7 @@ public class ItemTest : MonoBehaviour, IInteractible
         {
             item.Pickup();
             Debug.Log("Picking up key");
+            AudioManager.Instance.PlaySfx("Key");
         }
         Debug.Log(item);
         Destroy(gameObject);

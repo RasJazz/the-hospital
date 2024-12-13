@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelUI : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class LevelUI : MonoBehaviour
     public void OnRestartButton()
     {
         Debug.Log("Restart");
-        SceneLoader.Instance.LoadScene("Hosp");
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
     public void OnMainMenuButton()

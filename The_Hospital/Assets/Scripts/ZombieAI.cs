@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ZombieAI : MonoBehaviour
 {
+    [SerializeField] private GameObject deathUI;
     private NavMeshAgent agent;
     private Transform player;
     private AudioSource audioSource;
@@ -110,7 +111,8 @@ public class ZombieAI : MonoBehaviour
         }
         else if (distanceToPlayer <= attackRange)
         {
-            RestartGame();
+            Debug.Log("Test");
+            // RestartGame();
         }
     }
 
@@ -176,16 +178,22 @@ public class ZombieAI : MonoBehaviour
         currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
     }
 
-    void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    // void RestartGame()
+    // {
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    // }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            RestartGame();
+            CameraFollow playerCam = other.GetComponentInChildren<CameraFollow>();
+            // Pause game
+            Time.timeScale = 0;
+            playerCam.PauseCamera();
+            // Set death ui active
+            deathUI.SetActive(true);
+            // RestartGame();
         }
     }
 }

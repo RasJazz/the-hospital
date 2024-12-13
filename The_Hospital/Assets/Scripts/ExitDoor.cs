@@ -6,10 +6,12 @@ using static Item;
 
 public class ExitDoor : MonoBehaviour, IInteractible
 {
+    [SerializeField] private GameObject pauseUI;
     [SerializeField] private string prompt;
     [SerializeField] private InventoryManager inventory;
     public string InteractionPrompt => prompt;
 
+    [SerializeField] private CameraFollow cam;
     private Animation doorAnim;
     private bool _isOpen;
     public int doorId;
@@ -40,8 +42,8 @@ public class ExitDoor : MonoBehaviour, IInteractible
         foreach (var item in inventory.Items.Where(item => item.itemType == ItemType.Key && item.id == doorId))
         {
             //doorAnim.Play("open door");
-            Debug.Log("Opening Door");
-            AudioManager.Instance.PlaySfx("Exit Door");
+            Debug.Log("Opening Exit Door");
+            AudioManager.Instance.PlaySfx("Door");
                
             //Consume Key
             //inventory.Items.Remove(item);
@@ -50,6 +52,9 @@ public class ExitDoor : MonoBehaviour, IInteractible
             Debug.Log("Key removed from inventory");
             // Play animation
             _isOpen = true;
+            Time.timeScale = 0f; // Pause the game
+            cam.PauseCamera(); // Pause camera
+            pauseUI.SetActive(true);
             return _isOpen;
         } 
         Debug.Log("No key in inventory");
